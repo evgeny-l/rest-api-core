@@ -19,10 +19,10 @@ use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
- * Class APIJSONHandlerTrait
+ * Trait APIJSONHandlerTrait
  * @package EvgenyL\RestAPICore\Http\Exceptions
  */
-class APIJSONHandlerTrait
+trait APIJSONHandlerTrait
 {
 
     public function handleJSONResponse($request, Exception $exception)
