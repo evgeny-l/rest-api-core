@@ -36,7 +36,7 @@ class FormattedJSONResponse extends JsonResponse
         return parent::create($data, $code);
     }
 
-    public static function show($data, $message = '')
+    public static function show($data, $message = '', array $meta = [])
     {
         $data = [
             'meta' => [
@@ -45,10 +45,11 @@ class FormattedJSONResponse extends JsonResponse
             ],
             'data' => $data,
         ];
+        $data['meta'] = array_merge($data['meta'], $meta);
         return parent::create($data, self::HTTP_OK);
     }
 
-    public static function created($data, $message = 'Resource created.')
+    public static function created($data, $message = 'Resource created.', array $meta = [])
     {
         $data = [
             'meta' => [
@@ -57,10 +58,11 @@ class FormattedJSONResponse extends JsonResponse
             ],
             'data' => $data,
         ];
+        $data['meta'] = array_merge($data['meta'], $meta);
         return parent::create($data, self::HTTP_CREATED);
     }
 
-    public static function updated($data, $message = 'Resource updated.')
+    public static function updated($data, $message = 'Resource updated.', array $meta = [])
     {
         $data = [
             'meta' => [
@@ -69,10 +71,11 @@ class FormattedJSONResponse extends JsonResponse
             ],
             'data' => $data,
         ];
+        $data['meta'] = array_merge($data['meta'], $meta);
         return parent::create($data, self::HTTP_OK);
     }
 
-    public static function deleted($data = [], $message = 'Resource deleted.')
+    public static function deleted($data = [], $message = 'Resource deleted.', array $meta = [])
     {
         $data = [
             'meta' => [
@@ -81,10 +84,11 @@ class FormattedJSONResponse extends JsonResponse
             ],
             'data' => $data,
         ];
+        $data['meta'] = array_merge($data['meta'], $meta);
         return parent::create($data, self::HTTP_OK);
     }
 
-    public static function error($code, $message = 'Error occurred.', $data = [])
+    public static function error($code, $message = 'Error occurred.', array $data = [], array $meta = [])
     {
         $data = [
             'meta' => [
@@ -93,6 +97,7 @@ class FormattedJSONResponse extends JsonResponse
             ],
             'data' => $data,
         ];
+        $data['meta'] = array_merge($data['meta'], $meta);
         return parent::create($data, $code);
     }
 
