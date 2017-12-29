@@ -36,3 +36,9 @@ use EvgenyL\RestAPICore\Http\Exceptions\APIJSONHandlerTrait;
     
 ...
 ```
+
+Install response middleware for JSON formatting into API middleware section:
+
+```
+\EvgenyL\RestAPICore\Http\Middleware\ResponseFormat::class
+```
