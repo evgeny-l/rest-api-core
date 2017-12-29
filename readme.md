@@ -19,3 +19,20 @@ Publish the config file to `config/rest-api-core.php`
 ```bash
 php artisan vendor:publish --provider="EvgenyL\RestAPICore\RestAPICoreServiceProvider" --tag=config
 ```
+
+Install exceptions handler to `app/Exceptions/Handler.php`:
+
+```
+use EvgenyL\RestAPICore\Http\Exceptions\APIJSONHandlerTrait;
+
+...
+    public function render($request, Exception $exception)
+    {
+        if ($request->expectsJson()) {
+            return $this->handleJSONResponse($request, $exception);
+        }
+        return parent::render($request, $exception);
+    }
+    
+...
+```
