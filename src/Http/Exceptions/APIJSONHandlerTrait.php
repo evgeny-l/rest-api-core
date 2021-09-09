@@ -11,7 +11,7 @@
 namespace EvgenyL\RestAPICore\Http\Exceptions;
 
 use EvgenyL\RestAPICore\Http\Responses\FormattedJSONResponse;
-use Exception;
+use Throwable;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -25,7 +25,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 trait APIJSONHandlerTrait
 {
 
-    public function handleJSONResponse($request, Exception $exception)
+    public function handleJSONResponse($request, Throwable $exception)
     {
         $exception = $this->prepareException($exception);
         $data = [];
