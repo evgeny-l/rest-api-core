@@ -72,10 +72,18 @@ trait TransformsResponses
      * @param APIRequest $request
      * @param LengthAwarePaginator $paginator
      * @param bool|string $includes
+     * @param bool $appendValidatedParams
      * @return array
      */
-    protected function convertPaginatorJsonData(APIRequest $request, LengthAwarePaginator $paginator, $includes = false)
+    protected function convertPaginatorJsonData(APIRequest $request, LengthAwarePaginator $paginator, $includes = false, $appendValidatedParams = true)
     {
+        if ($appendValidatedParams) {
+            $paginator->appends($request->validated());
+            if ($request->has('per_page')) {
+                $paginator->appends('per_page', $request->get('per_page'));
+            }
+        }
+
         $models = $paginator->items();
         $items = new Collection($models, $this->getModelTransformer());
         $items->setPaginator(new IlluminatePaginatorAdapter($paginator));
@@ -103,5 +111,5 @@ trait TransformsResponses
         $data = $manager->createData($items)->toArray();
         return $data;
     }
-    
+
 }
