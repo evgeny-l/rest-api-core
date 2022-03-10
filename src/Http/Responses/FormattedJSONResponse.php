@@ -33,7 +33,8 @@ class FormattedJSONResponse extends JsonResponse
             'meta' => $meta,
             'data' => $data['data'],
         ];
-        return parent::create($data, $code);
+
+        return new static($data, $code);
     }
 
     public static function show($data, $message = '', array $meta = [])
@@ -46,7 +47,8 @@ class FormattedJSONResponse extends JsonResponse
             'data' => $data,
         ];
         $data['meta'] = array_merge($data['meta'], $meta);
-        return parent::create($data, self::HTTP_OK);
+
+        return new static($data, self::HTTP_OK);
     }
 
     public static function created($data, $message = 'Resource created.', array $meta = [])
@@ -59,7 +61,8 @@ class FormattedJSONResponse extends JsonResponse
             'data' => $data,
         ];
         $data['meta'] = array_merge($data['meta'], $meta);
-        return parent::create($data, self::HTTP_CREATED);
+
+        return new static($data, self::HTTP_CREATED);
     }
 
     public static function updated($data, $message = 'Resource updated.', array $meta = [])
@@ -72,7 +75,8 @@ class FormattedJSONResponse extends JsonResponse
             'data' => $data,
         ];
         $data['meta'] = array_merge($data['meta'], $meta);
-        return parent::create($data, self::HTTP_OK);
+
+        return new static($data, self::HTTP_OK);
     }
 
     public static function deleted($data = [], $message = 'Resource deleted.', array $meta = [])
@@ -85,7 +89,8 @@ class FormattedJSONResponse extends JsonResponse
             'data' => $data,
         ];
         $data['meta'] = array_merge($data['meta'], $meta);
-        return parent::create($data, self::HTTP_OK);
+
+        return new static($data, self::HTTP_OK);
     }
 
     public static function error($code, $message = 'Error occurred.', array $data = [], array $meta = [])
@@ -98,7 +103,8 @@ class FormattedJSONResponse extends JsonResponse
             'data' => $data,
         ];
         $data['meta'] = array_merge($data['meta'], $meta);
-        return parent::create($data, $code);
+
+        return new static($data, $code);
     }
 
     public static function valuesList($data, $message = 'List of possible values.')
